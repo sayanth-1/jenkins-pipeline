@@ -10,16 +10,19 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Docker Build') {
             steps {
-                bat 'echo Running tests'
+                bat 'docker build -t jenkins-docker-demo .'
             }
         }
 
-        stage('Deploy') {
+        stage('Test') {
             steps {
-                bat 'echo Deploying application'
+                bat 'docker images'
             }
+        }
+    }
+}
         }
     }
 }
