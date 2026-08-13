@@ -21,5 +21,12 @@ pipeline {
                 bat 'docker images'
             }
         }
+
+        stage('Deploy') {
+            steps {
+                bat 'docker rm -f jenkins-docker-demo-container 2>nul || exit /b 0'
+                bat 'docker run -d -p 8081:80 --name jenkins-docker-demo-container jenkins-docker-demo:latest'
+            }
+        }
     }
 }
